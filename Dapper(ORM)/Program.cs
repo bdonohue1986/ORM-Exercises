@@ -25,7 +25,12 @@ namespace Dapper_ORM_
             {
                 Console.WriteLine($"{task3.DepartmentID} {task3.Name}" );
             }
-            
+            var task4 = new DapperProductRepository(conn);
+            var task5 = task4.GetAllProducts();
+            foreach( var task6 in task5)
+            {
+                Console.WriteLine($"{task6.Name} {task6.Price}{task6.CategoryID} {task6.ProductID}");
+            }
         }
     }
 }
