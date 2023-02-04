@@ -23,12 +23,19 @@ namespace Dapper_ORM_
 
         public IEnumerable<Product> GetAllProducts()
         {
-            return _connection.Query<Product>("Sekect * From Products;").ToList();
+            return _connection.Query<Product>("SELECT * FROM Products;").ToList();
         }
         public void InsertProduct(string Name, double Price, int CategoryID)
         {
-            _connection.Execute("insert into products (Name), (Price), (CategoryID) Values (@Name),(@Price),(@CategoryID);");
-               
+            _connection.Execute("insert into products (Name, Price, CategoryID) Values (@Name,@Price,@CategoryID);",
+                new { Name = Name, Price = Price, CategoryID = CategoryID }) ;
+                           
+        }
+        public void DeleteProduct (int ProductId)
+        {
+            _connection.Execute("Delete From products where (@ProductID) = (ProductId);",
+                new { ProductId = ProductId }) ;
+
         }
 
     }

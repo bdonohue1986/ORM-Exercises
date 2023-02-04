@@ -27,6 +27,7 @@ namespace Dapper_ORM_
 
             new { departmentName = newDepartmentName });
         }
+        
 
         public IEnumerable<Department> GetAllDepartments()
         {
